@@ -24,23 +24,23 @@ const help = function() {
 }
 
 // Check help and set latitude and longitude
-var latitude = 0
-var longitude = 0
-if(args.h) {
+var latitude = ''
+var longitude = ''
+if(args.h !== undefined) {
     help()
     process.exit()
 }
 
-if(args.n) {
+if(args.n !== undefined) {
     latitude = args.n
-} else if(args.s) {
-    latitude = -args.s
+} else if(args.s !== undefined) {
+    latitude = '-' + args.s
 }
 
-if(args.e) {
+if(args.e !== undefined) {
     longitude = args.e
-} else if(args.w) {
-    longitude = -args.w
+} else if(args.w !== undefined) {
+    longitude = '-' + args.w
 }
 
 // Make a request
@@ -48,7 +48,7 @@ const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${
 const data = await response.json()
 
 // Check for JSON flag
-if (args.j) {
+if (args.j != undefined) {
   console.log(data)
   process.exit()
 }

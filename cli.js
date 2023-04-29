@@ -28,6 +28,7 @@ var latitude = args.n || args.s * -1
 var longitude = args.e || args.w * -1
 latitude = Number(Math.round(latitude*100)) / 100
 longitude = Number(Math.round(longitude*100)) / 100
+args.z = args.z.replace(/\//g, '%2F')
 
 if(args.h) {
     help()

@@ -46,3 +46,24 @@ if(args.e) {
 // Make a request
 const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${args.z}`)
 const data = await response.json()
+
+// Check for JSON flag
+if (args.j) {
+  console.log(data)
+  process.exit(0)
+}
+
+const days = args.d 
+const precipitation = data.daily.precipitation_hours[days]
+if (precipitation == 0) {
+    console.log("You will not need your galoshes")
+} else {
+    console.log("You will need your galoshes")
+}
+if (days == 0) {
+  console.log("today.")
+} else if (days > 1) {
+  console.log("in " + days + " days.")
+} else {
+  console.log("tomorrow.")
+}

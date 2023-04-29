@@ -24,34 +24,22 @@ const help = function() {
 }
 
 // Check help and set latitude and longitude
-var latitude = 0
-var longitude = 0
-if(args.h !== undefined) {
+var latitude = args.n || args.s * -1
+var longitude = args.e || args.w * -1
+latitude = Number(Math.round(latitude*100)) / 100
+longitude = Number(Math.round(longitude*100)) / 100
+
+if(args.h) {
     help()
     process.exit()
 }
-
-if(args.n !== undefined) {
-    latitude = Number(args.n)
-} else if(args.s !== undefined) {
-    latitude = Number('-' + args.s)
-}
-
-if(args.e !== undefined) {
-    longitude = Number(args.e)
-} else if(args.w !== undefined) {
-    longitude = Number('-' + args.w)
-}
-
-latitude = String(Math.round(latitude*100) / 100)
-longitude = String(Math.round(longitude*100) / 100)
 
 // Make a request
 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&timezone=' + args.z)
 const data = await response.json()
 
 // Check for JSON flag
-if (args.j != undefined) {
+if (args.j) {
   console.log(data)
   process.exit()
 }

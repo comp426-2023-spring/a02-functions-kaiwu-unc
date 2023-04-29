@@ -47,7 +47,7 @@ latitude = String(Math.round(latitude*100) / 100)
 longitude = String(Math.round(longitude*100) / 100)
 
 // Make a request
-const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${args.z}`)
+const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&timezone=' + args.z)
 const data = await response.json()
 
 // Check for JSON flag

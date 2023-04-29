@@ -43,8 +43,8 @@ if(args.e !== undefined) {
     longitude = Number('-' + args.w)
 }
 
-latitude = Math.round(latitude*100) / 100
-longitude = Math.round(longitude*100) / 100
+latitude = String(Math.round(latitude*100) / 100)
+longitude = String(Math.round(longitude*100) / 100)
 
 // Make a request
 const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${args.z}`)

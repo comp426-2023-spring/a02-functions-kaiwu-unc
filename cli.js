@@ -49,7 +49,7 @@ const data = await response.json()
 
 // Check for JSON flag
 if (args.j) {
-  console.log(JSON.stringify(data, null, 2))
+  console.log(JSON.stringify(data))
   process.exit(0)
 }
 

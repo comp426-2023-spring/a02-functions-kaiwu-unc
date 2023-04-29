@@ -28,7 +28,7 @@ var latitude = 0
 var longitude = 0
 if(args.h) {
     help()
-    process.exit(0)
+    process.exit()
 }
 
 if(args.n) {
@@ -49,8 +49,8 @@ const data = await response.json()
 
 // Check for JSON flag
 if (args.j) {
-  console.log(JSON.stringify(data))
-  process.exit(0)
+  console.log(data)
+  process.exit()
 }
 
 const days = args.d 
@@ -58,7 +58,7 @@ const precipitation = data.daily.precipitation_hours[days]
 if (precipitation == 0) {
     console.log("You will not need your galoshes")
 } else {
-    console.log("You will need your galoshes")
+    console.log("You might need your galoshes")
 }
 if (days == 0) {
   console.log("today.")

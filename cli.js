@@ -22,3 +22,27 @@ const help = function() {
     `
     console.log(helpText)
 }
+
+// Check help and set latitude and longitude
+var latitude = 0
+var longitude = 0
+if(args.h) {
+    help()
+    process.exit(0)
+}
+
+if(args.n) {
+    latitude = args.n
+} else if(args.s) {
+    latitude = -args.s
+}
+
+if(args.e) {
+    longitude = args.e
+} else if(args.w) {
+    longitude = -args.w
+}
+
+// Make a request
+const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${args.z}`)
+const data = await response.json()
